@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TouchAR: point at the screen with your hand</title>
+  <meta name="description" content="Turns a webcam into a pointing device: index fingertip moves the cursor, a pinch clicks." />
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <h1>TouchAR</h1>
+      <p class="tag">index fingertip moves the cursor, pinch clicks</p>
+    </div>
+    <div class="controls">
+      <button id="start" class="btn primary" type="button">Start camera</button>
+      <button id="stop" class="btn" type="button" disabled>Stop</button>
+    </div>
+  </header>
+
+  <section class="status" aria-live="polite">
+    <span class="chip" id="chip-camera" data-state="off">camera off</span>
+    <span class="chip" id="chip-hand" data-state="off">no hand</span>
+    <span class="chip" id="chip-gesture" data-state="idle">open</span>
+    <span class="chip mono" id="chip-fps">0 fps</span>
+  </section>
+
+  <main>
+    <p class="hint">
+      Point with your index finger, then pinch your thumb and index finger together to click.
+      The mouse still works, so you can compare the two.
+    </p>
+
+    <div class="grid" id="grid">
+      <button class="tile" type="button" data-tone="violet">
+        <span class="tile-k">01</span>
+        <span class="tile-t">Pointing</span>
+        <span class="tile-d">Move your hand and watch the ring follow it.</span>
+      </button>
+      <button class="tile" type="button" data-tone="amber">
+        <span class="tile-k">02</span>
+        <span class="tile-t">Pinch</span>
+        <span class="tile-d">Thumb and index together is a click.</span>
+      </button>
+      <button class="tile" type="button" data-tone="teal">
+        <span class="tile-k">03</span>
+        <span class="tile-t">Hover</span>
+        <span class="tile-d">Elements under the cursor light up first.</span>
+      </button>
+      <button class="tile" type="button" data-tone="rose">
+        <span class="tile-k">04</span>
+        <span class="tile-t">Reach</span>
+        <span class="tile-d">Works near the camera and further back.</span>
+      </button>
+      <button class="tile" type="button" data-tone="lime">
+        <span class="tile-k">05</span>
+        <span class="tile-t">Two hands</span>
+        <span class="tile-d">Not yet. Second hand is on the roadmap.</span>
+      </button>
+      <button class="tile" type="button" data-tone="blue">
+        <span class="tile-k">06</span>
+        <span class="tile-t">Any page</span>
+        <span class="tile-d">The layer is meant to sit over ordinary pages.</span>
+      </button>
+    </div>
+
+    <section class="log-wrap">
+      <h2>Events</h2>
+      <ol class="log mono" id="log">
+        <li class="log-empty">nothing yet. start the camera and pinch, or click with the mouse.</li>
+      </ol>
+    </section>
+  </main>
+
+  <aside class="pip" id="pip" hidden>
+    <video id="video" playsinline muted></video>
+    <canvas id="overlay"></canvas>
+    <span class="pip-label mono">camera</span>
+  </aside>
+
+  <div class="cursor" id="cursor" hidden aria-hidden="true">
+    <span class="ring"></span>
+    <span class="core"></span>
+  </div>
+
+  <div class="fatal" id="fatal" hidden role="alert"></div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

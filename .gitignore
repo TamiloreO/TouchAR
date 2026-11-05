@@ -1,0 +1,13 @@
+# editors and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# local tooling
+node_modules/
+*.log
+
+# never commit secrets or local config
+.env
+.env.local
